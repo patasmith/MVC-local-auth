@@ -25,7 +25,7 @@ Try completing sign-up, logging out, and logging back in to see more messages.
 
 ### passport-local-mongoose
 [Passport-Local Mongoose](https://github.com/saintedlama/passport-local-mongoose) makes it a little easier to use the passport-local strategy, by plugging into your Mongoose user schema:
-```
+```js
 // models/User.js
 
 const mongoose = require('mongoose')
@@ -45,7 +45,7 @@ module.exports = User
 ```
 
 Note the options added: `{ usernameField: 'email' }`. The default is username. In order for an alternative usernameField to be recognized correctly, `User.createStrategy()` must be used as a helper instead of `new LocalStrategy(User.authenticate())`:
-```
+```js
 // utils/passport.js
 
 const User = require('../models/User')
@@ -58,7 +58,7 @@ module.exports = function(passport) {
 ```
 
 Registering a new user can be as simple as the following:
-```
+```js
 // from controllers/auth.js
 
 User.register(new User({ email: req.body.email }),
@@ -79,14 +79,14 @@ Your new user will be stored in whichever collection you specified in MONGO_URI.
 [connect-flash](https://github.com/jaredhanson/connect-flash) is a package for passing messages to views so they may be rendered. You can also replace this with [express-flash](https://github.com/RGBboy/express-flash) here and the functionality within this project will be identical.
 
 To set up, first simply pass to your app:
-```
+```js
 // app.js
 
 app.use(flash())
 ```
 
 When it is time to add a message, call req.flash with the `type` and `message` you want to store:
-```
+```js
 // from controllers/auth.js
 
 const getLogout = (req, res, next) => {
@@ -99,7 +99,7 @@ const getLogout = (req, res, next) => {
 ```
 
 Messages will be consumed when `app.flash()` is called. Do this on render to pass all messages to your view:
-```
+```js
 // from controllers/home.js
 
 const getIndex = (req, res, next) => {
@@ -111,7 +111,7 @@ const getIndex = (req, res, next) => {
 ```
 
 To consume only messages of a specific type, call `app.flash('yourTypeHere')`. As a result, you can also pass messages to your view by type:
-```
+```js
 const getIndex = (req, res, next) => {
   res.render('index', {
     title: "Index",
@@ -126,7 +126,7 @@ const getIndex = (req, res, next) => {
 [express-handlebars](https://github.com/ericf/express-handlebars) is a Handlebars view engine for Express.
 
 Setup is simple. The following options tell the engine to use files ending in `.hbs` as template files:
-```
+```js
 // from app.js
 const hbs = require('express-handlebars')
 
@@ -140,7 +140,7 @@ app.set('view engine', '.hbs')
 ```
 
 When a render method is called and passed a flash message, your templates can access it via whatever key you used to store it. Assuming you used `messages: req.flash()` from above, you can access the messages by type:
-```
+```hbs
 <!-- views/partials/message.hbs -->
 
 {{#each messages.success}}
@@ -164,7 +164,7 @@ The different keys in the `messages` object can be accessed by name. Within the 
 
 ### Rendering on authentication failure instead of redirecting
 A convenient way to use `passport.authenticate` is to pass options:
-```
+```js
 passport.authenticate('local', {
   failureRedirect: '/login',
   failureFlash: true,
@@ -174,7 +174,7 @@ passport.authenticate('local', {
 See [passport-api-docs](https://github.com/jwalton/passport-api-docs) for all the options available.
 
 However, if you would like to do anything before or after failure, you can pass in a callback function instead:
-```
+```js
 // from controllers/auth.js
 
 const postLogin = (req, res, next) => {
