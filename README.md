@@ -15,7 +15,7 @@ Add an `.env` file to the root directory using `.env.example` as a guide. You wi
 
 Start the server with `npm run dev` or `npm start`.
 
-Visit (http://localhost:3000) in your browser. You should see links to sign up for a new account or log into an existing account.
+Visit http://localhost:3000 in your browser (replace the port with whichever one you set in `.env`). You should see links to sign up for a new account or log into an existing account.
 
 Visit the sign up form, and try to sign up using invalid information, for example, something that isn't an email, or passwords that don't match. Info and error messages will appear at the top of the form.
 
