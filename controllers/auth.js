@@ -15,20 +15,24 @@ exports.getLogin = (req, res) => {
   })
 }
 
-exports.postLogin = [
-  passport.authenticate('local', {
-    failureRedirect: '/login',
-    failureFlash: true,
-    successRedirect: userHome,
-  }),
-  function (err, req, res, next) {
-    if (err) {
-      next(err)
+exports.postLogin = (req, res, next) => {
+  passport.authenticate('local', (err, user, info) => {
+    if (err) return next(err)
+    if (!user) {
+      req.flash('error', 'Invalid credentials.')
+      return res.render('login', {
+	title: "Log into your account",
+	messages: req.flash(),
+      })
     }
-  }
-]
+    req.logIn(user, (err) => {
+      if (err) return next(err)
+      return res.redirect(userHome)
+    })
+  })(req, res, next)
+}
 
-exports.logout = (req, res, next) => {
+exports.getLogout = (req, res, next) => {
   req.logout((err) => {
     if (err) next(err)
     req.flash('success', "You have logged out.")
@@ -55,7 +59,10 @@ exports.postSignup = (req, res) => {
   if (validationErrors.length) {
     req.flash('info', "Sign up failed.")
     req.flash('error', validationErrors)
-    return res.redirect('/signup')
+    return res.render('signup', {
+      title: "Sign up for an account",
+      messages: req.flash(),
+    })
   }
   req.body.email = validator.normalizeEmail(req.body.email, { gmail_remove_dots: false })
   
@@ -63,9 +70,12 @@ exports.postSignup = (req, res) => {
 		req.body.password,
 		(err, user) => {
 		  if (err) {
-		    log.error("There was an error:", err, "\n", user)
-		    req.flash('error', "Sign up failed.")
-		    res.redirect('/signup')
+		    req.flash('info', "Sign up failed.")
+		    req.flash('error', "Unable to create user.")
+		    return res.render('signup', {
+		      title: "Sign up for an account",
+		      messages: req.flash(),
+		    })
 		  }
 		  passport.authenticate('local')(req, res, () => {
 		    req.flash('success', "Your account has been created.")

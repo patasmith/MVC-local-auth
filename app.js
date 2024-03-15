@@ -8,7 +8,7 @@ const connectDB = require('./utils/db')
 const { MONGO_URI, EXT } = require('./utils/config')
 
 const hbs = require('express-handlebars')
-const flash = require('express-flash')
+const flash = require('connect-flash')
 
 app = express()
 
