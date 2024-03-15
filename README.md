@@ -68,12 +68,12 @@ User.register(new User({ email: req.body.email }),
 		          res.redirect('/signup')
 		        }
 		        passport.authenticate('local')(req, res, () => {
-		          res.redirect(userHome)
+		          res.redirect('/dashboard')
 		        })
 		      })
 ```
 
-Your new user will be stored in whichever collection you specified in MONGO_URI. By default, passport-local-mongoose adds hash and salt fields which it will use for password verification.
+Your new user will be stored in whichever collection you specified in MONGO_URI. By default, passport-local-mongoose adds hash and salt fields which it will use for password verification. See the repository for information on the many settings that are available.
 
 ### connect-flash
 [connect-flash](https://github.com/jaredhanson/connect-flash) is a package for passing messages to views so they may be rendered. You can also replace this with [express-flash](https://github.com/RGBboy/express-flash) here and the functionality within this project will be identical.
@@ -116,8 +116,8 @@ const getIndex = (req, res, next) => {
   res.render('index', {
     title: "Index",
     success: req.flash('success'),
-	info: req.flash('info'),
-	error: req.flash('error'),
+    info: req.flash('info'),
+    error: req.flash('error'),
   })
 }
 ```
