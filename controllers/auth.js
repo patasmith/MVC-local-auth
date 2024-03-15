@@ -18,10 +18,13 @@ exports.getLogin = (req, res) => {
 exports.postLogin = [
   passport.authenticate('local', {
     failureRedirect: '/login',
+    failureFlash: true,
     successRedirect: userHome,
   }),
   function (err, req, res, next) {
-    if (err) next(err)
+    if (err) {
+      next(err)
+    }
   }
 ]
 

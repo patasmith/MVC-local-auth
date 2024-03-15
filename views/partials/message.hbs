@@ -1,11 +1,15 @@
-<div>
-  {{#each messages.success}}
-    <p>Success: {{ this }}</p>
-  {{/each}}
-  {{#each messages.info}}
-    <p>Info: {{ this }}</p>
-  {{/each}}
-  {{#each messages.error}}
-    <p>Error: {{ this }}</p>
-  {{/each}}
-</div>
+{{#each messages.success}}
+  <div class="message">
+    <p><span class="success">Success:</span> {{ this }}</p>
+  </div>
+{{/each}}
+{{#each messages.info}}
+  <div class="message">
+    <p><span class="info">Info:</span> {{ this }}</p>
+  </div>
+{{/each}}
+{{#each messages.error}}
+  <div class="message">
+    <p><span class="error">Error:</span> {{ this }}</p>
+  </div>
+{{/each}}

@@ -1,0 +1,37 @@
+.container {
+    padding: .5em 2em;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    max-width: 400px;
+}
+
+form > section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.25em 0;
+}
+
+form > button {
+    align-self: flex-start;
+    margin-top: 1em;
+}
+
+.success {
+    color: green;
+}
+
+.info {
+    color: darkgoldenrod;
+}
+
+.error {
+    color: red;
+}
+
+

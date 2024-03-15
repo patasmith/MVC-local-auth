@@ -1,3 +1,4 @@
+const path = require('path')
 const express = require('express')
 
 const passport = require('passport')
@@ -37,5 +38,7 @@ app.set('view engine', EXT)
 app.use(flash())
 
 app.use('/', require('./routes/main'))
+
+app.use(express.static('public'))
 
 module.exports = app
