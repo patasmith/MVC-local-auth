@@ -204,8 +204,11 @@ You are encouraged to open issues if you have ideas for how to improve this proj
 
 ### To Do
 
-- There is a lot of repeating render code in the controllers that should be cleaned up.
-- I would like to integrate a captcha into the signup and login pages.
+- Account deletion
+- Changing password
+- Sending an email to verify account or recover in case of forgotten password
+- Signup/login captcha
+- Refactor similar render calls in controllers
 
 ### References
 
