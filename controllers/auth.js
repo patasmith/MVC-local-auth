@@ -50,7 +50,7 @@ exports.getSignup = (req, res) => {
   })
 }
 
-exports.postSignup = (req, res) => {
+exports.postSignup = async (req, res) => {
   const validationErrors = []
   if (!validator.isEmail(req.body.email)) validationErrors.push("Please enter a valid email address.")
   if (!validator.isLength(req.body.password, { min: 8 })) validationErrors.push("Password must be at least 8 characters long.")
@@ -66,7 +66,7 @@ exports.postSignup = (req, res) => {
   }
   req.body.email = validator.normalizeEmail(req.body.email, { gmail_remove_dots: false })
   
-  User.register(new User({ email: req.body.email }),
+  await User.register(new User({ email: req.body.email }),
 		req.body.password,
 		(err, user) => {
 		  if (err) {

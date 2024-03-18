@@ -1,0 +1,18 @@
+{{#each messages.confirm}}
+  <p>Are you sure you wish to delete your account for {{ this }}?</p>
+  <p>You will not be able to undo this action.</p>
+  <form action="/dashboard/deleteAccount" method="post">
+    <input type="hidden" name="_method" value="delete" />
+    <section>
+      <label for="confirm">Type the word 'yes' (without quotes) in this box:</label>
+      <input id="confirm" name="confirm" type="text" autofocus>
+    </section>
+    <button type="submit">Delete account</button>
+  </form>
+  <form action="/dashboard" method="get">
+    <button type="submit">Cancel</button>
+  </form>
+{{/each}}
+{{#each messages.confirmFailed}}
+  <p class="error">You did not type "yes" in the box.</p>
+{{/each}}

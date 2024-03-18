@@ -5,10 +5,4 @@ module.exports = {
       messages: req.flash(),
     })
   },
-  getDashboard: (req, res, next) => {
-    res.render('dashboard', {
-      title: "User dashboard",
-      messages: req.flash(),
-    })
-  }
 }
