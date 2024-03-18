@@ -6,7 +6,7 @@ I built this because I found it challenging to find information on Passport auth
 
 ## Set Up
 
-First, clone or fork this project.
+First, clone or fork this project and run `npm install`.
 
 Add an `.env` file to the root directory using `.env.example` as a guide. You will need to add:
 - The port number you'd like to run your server on
