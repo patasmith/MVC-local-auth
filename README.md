@@ -19,7 +19,7 @@ Visit http://localhost:3000 in your browser (replace the port with whichever one
 
 Visit the sign up form, and try to sign up using invalid information, for example, something that isn't an email, or passwords that don't match. Info and error messages will appear at the top of the form.
 
-Try completing sign-up, logging out, and logging back in to see more messages.
+Try completing sign-up, logging out, logging back in, and deleting accounts to see more messages.
 
 ## Details
 
@@ -204,7 +204,6 @@ You are encouraged to open issues if you have ideas for how to improve this proj
 
 ### To Do
 
-- Account deletion
 - Changing password
 - Sending an email to verify account or recover in case of forgotten password
 - Signup/login captcha
